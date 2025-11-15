@@ -19,3 +19,18 @@
 3. You will be asked for an id
 4. On firebase rules, if denied, this will be returned as 403
 5. If included on allowed emails list, can enter but access will depend on access given
+
+**Technical**
+[HTML / CSS View]       <-- User interaction & UI
+        |
+        v
+[Component (.ts)]       <-- Handles events, binds signals, reactive forms
+        |
+        v
+[Service (.ts)]         <-- Business logic, DTO ↔ AppModel mapping
+        |
+        v
+[Repository (.ts)]      <-- Firestore access (CRUD, subcollections)
+        |
+        v
+[Firebase / Firestore]  <-- Stores DTOs
