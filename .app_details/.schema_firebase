@@ -1,0 +1,46 @@
+users (collection)
+  └── {userId} (document)
+       email: string
+       name: string
+
+       owned_trackings (list)
+         └── trackingId: string (item)
+
+       external_trackings (list)
+        └── trackingId: string (item)
+
+
+trackings (collection)
+  └── {trackingId} (document)
+       name: string
+       createdBy: string (userId)
+       dateCreated: Timestamp
+
+       allowedUsers (map)
+         └── email: string
+             role: "guest" | "member" | "admin"
+
+       tasks (subcollection)
+         └── {taskId} (document)
+              id: string
+              type: "issue" | "plan"
+              name: string
+              description: string
+              dateCreated: Timestamp
+              dateLastModified: Timestamp
+              dateDue: Timestamp | null
+              relatedTaskIds: string[]
+
+       routines (subcollection)
+         └── {routineId} (document)
+              id: string
+              name: string
+              description: string
+
+              frequency:
+                type: "daily" | "weekly" | "monthly" | "yearly"
+                interval: number
+                occurrences: number | null
+
+              dateCreated: Timestamp
+              dateLastModified: Timestamp

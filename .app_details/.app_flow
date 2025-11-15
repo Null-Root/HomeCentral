@@ -1,0 +1,21 @@
+**General Application Flow**
+1. Access website/PWA
+2. Login using SSO (Google)
+3. *This will be saved on firestore (Account Record Creation)
+
+
+**Creation and Sharing of HomeTracking**
+1. Create HomeTracking
+2. View HomeTracking Details
+3. Select the button showing add people icon
+4. Click the + button to add new allowed email
+5. Add their corresponding email and the access granted
+6. Below is another section where the tracking id is placed
+7. Share this tracking id to the user
+
+**Joining an existing HomeTracking**
+1. View All HomeTracking
+2. Click join HomeTracking
+3. You will be asked for an id
+4. On firebase rules, if denied, this will be returned as 403
+5. If included on allowed emails list, can enter but access will depend on access given

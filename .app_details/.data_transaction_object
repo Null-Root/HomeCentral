@@ -1,0 +1,54 @@
+firebaseDTOs:
+  - UserProfileDto:
+      id: str
+      email: str
+      name: str
+
+      ownedTrackings:
+        type: list
+        items: str
+
+      externalTrackings:
+        type: list
+        items: str
+
+  - HomeCentralTrackingDto:
+      id: str
+      name: str
+      createdBy: str
+      dateCreated: timestamp
+
+      allowedUsers:
+        type: map
+        key: str  # email
+        value: enum
+          values: [guest, member, admin]
+
+      tasks:
+        type: list
+        items:
+          id: str
+          type: enum
+            values: [issue, plan]
+          name: str
+          description: str
+          dateCreated: timestamp
+          dateLastModified: timestamp
+          dateDue: timestamp | null
+          relatedTaskIds:
+            type: list
+            items: str
+
+      routines:
+        type: list
+        items:
+          id: str
+          name: str
+          description: str
+          frequency:
+            type: enum
+              values: [daily, weekly, monthly, yearly]
+            interval: int
+            occurrences: int | null
+          dateCreated: timestamp
+          dateLastModified: timestamp

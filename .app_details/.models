@@ -1,0 +1,54 @@
+appModels:
+  - UserProfile:
+      id: str
+      email: str
+      name: str
+
+      ownedTrackings:
+        type: list
+        items: str
+
+      externalTrackings:
+        type: list
+        items: str
+
+  - HomeCentralTracking:
+      id: str
+      name: str
+      createdBy: str
+      dateCreated: date
+
+      allowedUsers:
+        type: map
+        key: str  # email
+        value: enum
+          values: [guest, member, admin]
+
+      tasks:
+        type: list
+        items:
+          id: str
+          type: enum
+            values: [issue, plan]
+          name: str
+          description: str
+          dateCreated: date
+          dateLastModified: date
+          dateDue: date | null
+          relatedTaskIds:
+            type: list
+            items: str
+
+      routines:
+        type: list
+        items:
+          id: str
+          name: str
+          description: str
+          frequency:
+            type: enum
+              values: [daily, weekly, monthly, yearly]
+            interval: int
+            occurrences: int | null
+          dateCreated: date
+          dateLastModified: date
