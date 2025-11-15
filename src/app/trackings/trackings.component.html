@@ -1,0 +1,24 @@
+<section class="trackings">
+  <h2>Home Trackings</h2>
+
+  <div class="add-row">
+    <input [(ngModel)]="newName" placeholder="New tracking name" />
+    <button (click)="add()" class="primary">Add</button>
+  </div>
+
+  <ul class="list">
+    <li *ngFor="let t of trackings$ | async">
+      <div *ngIf="editId() !== t.id">
+        <span class="name">{{ t.name }}</span>
+        <button (click)="startEdit(t)">Edit</button>
+        <button (click)="delete(t.id)">Delete</button>
+      </div>
+
+      <div *ngIf="editId() === t.id">
+        <input [(ngModel)]="editNameValue" />
+        <button (click)="saveEdit()">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </div>
+    </li>
+  </ul>
+</section>
