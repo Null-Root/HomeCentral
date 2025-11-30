@@ -7,6 +7,20 @@
     <label for="name">Tracking Name</label>
     <input id="name" type="text" formControlName="name" placeholder="Enter tracking name" />
 
+    <div class="allowed-users">
+      <h3>Allowed Users</h3>
+      <div formArrayName="allowedUsers">
+        <div *ngFor="let user of allowedUsers.controls; let i = index" [formGroupName]="i" class="user-row">
+          <input formControlName="email" placeholder="User email" />
+          <select formControlName="role">
+            <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+          </select>
+          <button type="button" (click)="removeAllowedUser(i)">🗑️</button>
+        </div>
+      </div>
+      <button type="button" class="add-user-btn" (click)="addAllowedUser()">+ Add User</button>
+    </div>
+
     <div class="buttons">
       <button type="submit" [disabled]="trackingForm.invalid" class="save-btn">
         {{ isEditMode ? 'Update' : 'Save' }}
