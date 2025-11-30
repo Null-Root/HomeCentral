@@ -1,0 +1,121 @@
+/* ----------------------------- */
+/* 📱 MOBILE FIRST STYLES        */
+/* ----------------------------- */
+
+.hc-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f3f4f6;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.35s ease both;
+  padding: 1.5rem 1.25rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.actions button.primary {
+  width: 50%;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+/* Hover + Active */
+.actions button.primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.actions button.primary:active {
+  background: #1dd84c;
+  transform: translateY(0);
+}
+
+/* Accessibility: Focus state */
+.actions button.primary:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+
+/* ----------------------------- */
+/* 🔁 ANIMATION                 */
+/* ----------------------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* ✔ Fixed missing value */
+  }
+}
+
+
+/* ----------------------------- */
+/* 🌙 DARK MODE (Optional)      */
+/* ----------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  .hc-home {
+    background: #111827;
+  }
+
+  .card {
+    background: #1f2937;
+    color: #e5e7eb;
+  }
+
+  .title {
+    color: #f9fafb;
+  }
+
+  .actions button.primary {
+    background: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+  }
+
+  .actions button.primary:hover {
+    background: #2563eb;
+  }
+}
+
+
+/* ----------------------------- */
+/* 🖥️ DESKTOP ENHANCEMENTS      */
+/* ----------------------------- */
+
+@media (min-width: 640px) {
+  .card {
+    max-width: 420px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

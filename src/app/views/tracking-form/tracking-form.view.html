@@ -1,0 +1,17 @@
+<div class="tracking-form-page">
+  <header class="top-bar">
+    <h2>{{ isEditMode ? 'Edit Tracking' : 'Add Tracking' }}</h2>
+  </header>
+
+  <form [formGroup]="trackingForm" (ngSubmit)="saveTracking()" class="tracking-form">
+    <label for="name">Tracking Name</label>
+    <input id="name" type="text" formControlName="name" placeholder="Enter tracking name" />
+
+    <div class="buttons">
+      <button type="submit" [disabled]="trackingForm.invalid" class="save-btn">
+        {{ isEditMode ? 'Update' : 'Save' }}
+      </button>
+      <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

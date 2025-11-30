@@ -1,31 +1,37 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Auth } from '@angular/fire/auth';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { SessionService } from '@src/app/services/session.service';
 
 @Component({
   selector: 'hc-home',
-  imports: [CommonModule],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  templateUrl: './home.view.html',
+  styleUrls: ['./home.view.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent {
+export class HomeView {
 
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
+  private readonly session = inject(SessionService);
 
   protected async googleSignIn() {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(this.auth as any, provider);
-      const user = result.user;
-      console.log('Google sign-in success', user);
-      // navigate to the home trackings list after login
+      
+      // Set User
+      this.session.setUser(
+        result.user.uid,
+        result.user.displayName || 'Anonymous',
+        result.user.email || 'no-email'
+      );
+
+      // Navigate to trackings
       await this.router.navigateByUrl('/trackings');
-    } catch (err: any) {
-      console.error('Google sign-in error', err);
+    }
+    catch (err: any) {
       alert(`Sign-in failed: ${err?.message ?? err}`);
     }
   }

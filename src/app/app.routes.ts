@@ -1,13 +1,24 @@
 import { Routes } from '@angular/router';
+import { HomeView } from '@src/app/views/home/home.view';
+import { TrackingsView } from './views/trackings/trackings.view';
+import { TrackingFormView } from './views/tracking-form/tracking-form.view';
 
 export const routes: Routes = [
 	{
 		path: '',
-		loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent)
+		loadComponent: () => HomeView
 	},
 	{
 		path: 'trackings',
-		loadComponent: () => import('./trackings/trackings.component').then((m) => m.TrackingsComponent)
+		loadComponent: () => TrackingsView
+	},
+	{
+		path: 'trackings/add',
+		component: TrackingFormView
+	},
+	{
+		path: 'trackings/edit/:id',
+		component: TrackingFormView
 	},
 	{ path: '**', redirectTo: '' }
 ];

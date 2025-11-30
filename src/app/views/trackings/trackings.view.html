@@ -1,0 +1,28 @@
+<div class="trackings-page">
+
+  <!-- Header -->
+  <header class="top-bar">
+    <h2>Trackings</h2>
+    <button class="add-btn" (click)="onAddTracking()">+ Add</button>
+  </header>
+
+  <!-- List -->
+  <section class="tracking-list">
+    <div class="tracking-row" *ngFor="let t of trackings">
+      <div class="info">
+        <span class="name" (click)="onViewTracking(t.id!)">{{ t.name }}</span>
+      </div>
+
+      <div class="actions">
+        <button class="icon-btn edit" (click)="onEditTracking(t.id!)">✏️</button>
+        <button class="icon-btn delete" (click)="onDeleteTracking(t.id!)">🗑️</button>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty" *ngIf="trackings.length === 0">
+      <p>No trackings yet</p>
+    </div>
+  </section>
+
+</div>
